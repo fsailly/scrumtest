@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/psm-extractor.iml" filepath="$PROJECT_DIR$/psm-extractor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scrumtest.iml" filepath="$PROJECT_DIR$/scrumtest.iml" />
     </modules>
   </component>
 </project>
