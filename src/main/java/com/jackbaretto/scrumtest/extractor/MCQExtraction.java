@@ -7,6 +7,8 @@ import net.sourceforge.tess4j.util.LoadLibs;
 
 import java.io.File;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Extract the MCQ from screenshots
@@ -15,6 +17,10 @@ import java.net.URL;
  */
 public class MCQExtraction {
 
+    private MCQExtraction() {
+        throw new IllegalAccessError("Utility class");
+    }
+
     public static void main(String[] args) {
 
         final ITesseract ocr = createOcr();
@@ -22,9 +28,9 @@ public class MCQExtraction {
 
         try {
             String recognizedCharacters = ocr.doOCR(mcqPicture);
-            System.out.println(recognizedCharacters);
+            Logger.getLogger(MCQExtraction.class.getName()).info(recognizedCharacters);
         } catch (TesseractException e) {
-            System.err.println(e.getMessage());
+            Logger.getLogger(MCQExtraction.class.getName()).log(Level.SEVERE,e.getMessage(),e);
         }
 
     }
