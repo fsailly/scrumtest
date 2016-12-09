@@ -11,7 +11,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Extract the MCQ from screenshots
+ * Extract the MCQ from screenshots. To run this class properly, you need to get the right Tesserect library (C++) built for your OS.
+ * It wrapped in the tess4j dependency only for windows 7 x86/x64, as DLL.
+ * More information about this library at https://github.com/tesseract-ocr/tesseract/wiki/Compiling
  * <p>
  * Created by florentsailly on 07/12/2016.
  */
@@ -27,6 +29,7 @@ public class MCQExtraction {
         final File mcqPicture = getSampleMCQ();
 
         try {
+            // TODO : faire un test sur la reconnaissance de N caractères ??
             String recognizedCharacters = ocr.doOCR(mcqPicture);
             Logger.getLogger(MCQExtraction.class.getName()).info(recognizedCharacters);
         } catch (TesseractException e) {
