@@ -1,6 +1,5 @@
 package com.jackbaretto.scrumtest.extractor;
 
-import java.io.File;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -22,10 +21,10 @@ public class MCQExtraction {
         throw new IllegalAccessError("Utility class");
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         final ExtractionParameters extractionParameters = new ExtractionParameters(args[MCQ_FILE_ARG]);
         final MCQExtractor mcqExtractor = new MCQExtractor();
-        List<ExtractionResult> extractionResults = mcqExtractor.extractMCQ(extractionParameters);
+        final List<ExtractionResult> extractionResults = mcqExtractor.extractMCQ(extractionParameters);
         Logger.getLogger(MCQExtraction.class.getName()).info("Mcq count : " + extractionResults.size());
     }
 

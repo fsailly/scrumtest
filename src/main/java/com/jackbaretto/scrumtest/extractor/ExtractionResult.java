@@ -1,6 +1,7 @@
 package com.jackbaretto.scrumtest.extractor;
 
 /**
+ * Encapsulates the result of an OCR extraction
  * Created by florentsailly on 15/12/2016.
  */
 public class ExtractionResult {
@@ -10,25 +11,30 @@ public class ExtractionResult {
     private final String recognizedCharacters;
 
     public ExtractionResult(final String recognizedCharacters) {
+
         this.recognizedCharacters = recognizedCharacters;
     }
 
     public String getRecognizedCharacters() {
-        return recognizedCharacters;
+        return this.recognizedCharacters;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final ExtractionResult that = (ExtractionResult) o;
 
-        ExtractionResult that = (ExtractionResult) o;
-
-        return recognizedCharacters != null ? recognizedCharacters.equals(that.recognizedCharacters) : that.recognizedCharacters == null;
+        return this.recognizedCharacters != null ? this.recognizedCharacters.equals(that.recognizedCharacters) : that.recognizedCharacters == null;
     }
 
     @Override
     public int hashCode() {
-        return recognizedCharacters != null ? recognizedCharacters.hashCode() : 0;
+
+        return this.recognizedCharacters != null ? this.recognizedCharacters.hashCode() : 0;
     }
 }

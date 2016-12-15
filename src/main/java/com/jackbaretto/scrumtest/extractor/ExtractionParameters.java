@@ -6,41 +6,42 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Set up parameters for MCQ file(s) extraction.
  * Created by florentsailly on 14/12/2016.
  */
 public class ExtractionParameters {
 
-    private Set<File> mcqPictures = new HashSet<File>();
+    private final Set<File> mcqPictures = new HashSet<File>();
 
     private final MimetypesFileTypeMap mimeTypes = new MimetypesFileTypeMap();
 
-    public ExtractionParameters(String mcqUrl) {
+    public ExtractionParameters(final String mcqUrl) {
         // adding mimeTypes to be able to recognize image formats
-        mimeTypes.addMimeTypes("image png tif jpg jpeg bmp");
+        this.mimeTypes.addMimeTypes("image png tif jpg jpeg bmp");
         addMCQPictures(mcqUrl);
     }
 
-    private void addMCQPictures(String mcqUrl) {
+    private void addMCQPictures(final String mcqUrl) {
         final File mcqFileOrFolder = new File(mcqUrl);
         if (mcqFileOrFolder.isDirectory()) {
             // TODO : voir pour le faire en lambda
-            for (File unknownFile : mcqFileOrFolder.listFiles()) {
+            for (final File unknownFile : mcqFileOrFolder.listFiles()) {
                 if (isMCQPicture(unknownFile)) {
-                    mcqPictures.add(unknownFile);
+                    this.mcqPictures.add(unknownFile);
                 }
             }
         } else {
-            mcqPictures.add(mcqFileOrFolder);
+            this.mcqPictures.add(mcqFileOrFolder);
         }
     }
 
-    private boolean isMCQPicture(File unknownFile) {
-        String mcqFileMimeType = mimeTypes.getContentType(unknownFile);
-        String mcqFileMimeTypePrefix = mcqFileMimeType.split("/")[0];
+    private boolean isMCQPicture(final File unknownFile) {
+        final String mcqFileMimeType = this.mimeTypes.getContentType(unknownFile);
+        final String mcqFileMimeTypePrefix = mcqFileMimeType.split("/")[0];
         return "image".equals(mcqFileMimeTypePrefix);
     }
 
     public Set<File> getMcqPictures() {
-        return new HashSet<File>(mcqPictures);
+        return new HashSet<File>(this.mcqPictures);
     }
 }

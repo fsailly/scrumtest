@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * In charge of MCQ extraction from image files
  * Created by florentsailly on 13/12/2016.
  */
 public class MCQExtractor {
@@ -21,22 +22,22 @@ public class MCQExtractor {
     public MCQExtractor() {
     }
 
-    public List<ExtractionResult> extractMCQ(ExtractionParameters extractionParameters) {
-        List<ExtractionResult> extractionResults = new ArrayList<ExtractionResult>();
-        for (File mcqPicture : extractionParameters.getMcqPictures()) {
+    public List<ExtractionResult> extractMCQ(final ExtractionParameters extractionParameters) {
+        final List<ExtractionResult> extractionResults = new ArrayList<ExtractionResult>();
+        for (final File mcqPicture : extractionParameters.getMcqPictures()) {
             final ExtractionResult recognizedMcq = this.recognizeCharacters(mcqPicture);
             extractionResults.add(recognizedMcq);
         }
         return extractionResults;
     }
 
-    private ExtractionResult recognizeCharacters(File mcqPicture) {
+    private ExtractionResult recognizeCharacters(final File mcqPicture) {
         try {
             // TODO : faire un test sur la reconnaissance de N caractères ??
             final String recognizeCharacters = this.ocr.doOCR(mcqPicture);
             Logger.getLogger(MCQExtractor.class.getName()).info(recognizeCharacters);
             return new ExtractionResult(recognizeCharacters);
-        } catch (TesseractException e) {
+        } catch (final TesseractException e) {
             Logger.getLogger(MCQExtractor.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
         return ExtractionResult.EMPTY;
@@ -48,8 +49,7 @@ public class MCQExtractor {
     private static ITesseract createOcr() {
 
         //JNA Interface Mapping
-        ITesseract ocr = new Tesseract();
-
+        final ITesseract ocr = new Tesseract();
 
         //You either set your own tessdata folder with your custom language pack or
         //use LoadLibs to load the default tessdata folder for you.
