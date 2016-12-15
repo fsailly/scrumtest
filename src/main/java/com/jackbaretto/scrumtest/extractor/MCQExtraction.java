@@ -1,13 +1,7 @@
 package com.jackbaretto.scrumtest.extractor;
 
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.TesseractException;
-import net.sourceforge.tess4j.util.LoadLibs;
-
 import java.io.File;
-import java.net.URL;
-import java.util.logging.Level;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -19,48 +13,20 @@ import java.util.logging.Logger;
  */
 public class MCQExtraction {
 
+    /**
+     * This lauching Argument contains the MCQ file or folder URL
+     */
+    private static final int MCQ_FILE_ARG = 0;
+
     private MCQExtraction() {
         throw new IllegalAccessError("Utility class");
     }
 
     public static void main(String[] args) {
-
-        final ITesseract ocr = createOcr();
-        final File mcqPicture = getSampleMCQ();
-
-        try {
-            // TODO : faire un test sur la reconnaissance de N caractères ??
-            String recognizedCharacters = ocr.doOCR(mcqPicture);
-            Logger.getLogger(MCQExtraction.class.getName()).info(recognizedCharacters);
-        } catch (TesseractException e) {
-            Logger.getLogger(MCQExtraction.class.getName()).log(Level.SEVERE,e.getMessage(),e);
-        }
-
+        final ExtractionParameters extractionParameters = new ExtractionParameters(args[MCQ_FILE_ARG]);
+        final MCQExtractor mcqExtractor = new MCQExtractor();
+        List<ExtractionResult> extractionResults = mcqExtractor.extractMCQ(extractionParameters);
+        Logger.getLogger(MCQExtraction.class.getName()).info("Mcq count : " + extractionResults.size());
     }
 
-    /**
-     *
-     * @return MCQ picture from Resource folder
-     */
-    private static File getSampleMCQ() {
-        URL mcqUrl = MCQExtraction.class.getResource("sample-mcq.png");
-        return new File(mcqUrl.getFile());
-    }
-
-    /**
-     * Instanciates the OCR
-     */
-    private static ITesseract createOcr() {
-
-        //JNA Interface Mapping
-        ITesseract ocr = new Tesseract();
-
-
-        //You either set your own tessdata folder with your custom language pack or
-        //use LoadLibs to load the default tessdata folder for you.
-        //This is mandatory to provide one !!
-
-        ocr.setDatapath(LoadLibs.extractTessResources("tessdata").getAbsolutePath());
-        return ocr;
-    }
 }
