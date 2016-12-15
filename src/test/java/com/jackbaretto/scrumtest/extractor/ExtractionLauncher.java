@@ -6,10 +6,10 @@ import java.net.URL;
  * This class tests the constancy of the tesseract recognition.
  * Created by florentsailly on 09/12/2016.
  */
-public class ExtractionTest {
+public class ExtractionLauncher {
 
 
-    public void recognitionTest() {
+    public void launch() {
         MCQExtraction.main(new String[]{getSampleMCQUrl()});
     }
 
@@ -17,7 +17,7 @@ public class ExtractionTest {
      * @return MCQ picture from Resource folder
      */
     private static String getSampleMCQUrl() {
-        URL mcqUrl = ExtractionTest.class.getResource("samples");
+        final URL mcqUrl = ExtractionLauncher.class.getResource("samples");
         return mcqUrl.getFile();
     }
 }
