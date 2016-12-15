@@ -27,7 +27,7 @@ public class OCRTest {
      * @return MCQ picture from Resource folder
      */
     private static String getSampleMCQUrl() {
-        final URL mcqUrl = OCRTest.class.getResource("samples/LQ-mcq.png");
+        final URL mcqUrl = OCRTest.class.getResource("samples/HQ-mcq.png");
         return mcqUrl.getFile();
     }
 }
