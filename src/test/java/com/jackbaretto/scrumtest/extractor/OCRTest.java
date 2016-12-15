@@ -1,6 +1,10 @@
 package com.jackbaretto.scrumtest.extractor;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.net.URL;
+import java.util.List;
 
 /**
  * This class tests the constancy of the tesseract recognition.
@@ -8,16 +12,22 @@ import java.net.URL;
  */
 public class OCRTest {
 
+    private static final int HQ_CHARACTER_COUNT = 1001;
 
-    public void recognitionTest() {
-        MCQExtraction.main(new String[]{getSampleMCQUrl()});
+    @Test
+    public void recognitionCountTest() {
+        final ExtractionParameters extractionParameters = new ExtractionParameters(getSampleMCQUrl());
+        final MCQExtractor mcqExtractor = new MCQExtractor();
+        final List<ExtractionResult> extractionResults = mcqExtractor.extractMCQ(extractionParameters);
+        final ExtractionResult sampleMCQResult = extractionResults.get(0);
+        Assert.assertEquals(HQ_CHARACTER_COUNT, sampleMCQResult.getRecognizedCharacters().length());
     }
 
     /**
      * @return MCQ picture from Resource folder
      */
     private static String getSampleMCQUrl() {
-        URL mcqUrl = OCRTest.class.getResource("samples");
+        final URL mcqUrl = OCRTest.class.getResource("samples/LQ-mcq.png");
         return mcqUrl.getFile();
     }
 }

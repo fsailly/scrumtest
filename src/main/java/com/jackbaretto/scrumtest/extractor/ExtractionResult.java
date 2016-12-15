@@ -13,6 +13,10 @@ public class ExtractionResult {
         this.recognizedCharacters = recognizedCharacters;
     }
 
+    public String getRecognizedCharacters() {
+        return recognizedCharacters;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
