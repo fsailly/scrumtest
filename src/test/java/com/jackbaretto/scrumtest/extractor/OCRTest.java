@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class OCRTest {
 
-    private static final int HQ_CHARACTER_COUNT = 1001;
+    private static final int HQ_CHARACTER_COUNT = 999;
 
     @Test
     public void recognitionCountTest() {
