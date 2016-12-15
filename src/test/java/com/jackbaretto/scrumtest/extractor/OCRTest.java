@@ -12,15 +12,26 @@ import java.util.List;
  */
 public class OCRTest {
 
-    private static final int HQ_CHARACTER_COUNT = 999;
+    private static final int HQ_CHARACTER_COUNT_LINUX = 999;
+    private static final int HQ_CHARACTER_COUNT_MAC = 1001;
 
     @Test
     public void recognitionCountTest() {
+        final int expectedCharacterCount = getExpectedCharacterCount();
         final ExtractionParameters extractionParameters = new ExtractionParameters(getSampleMCQUrl());
         final MCQExtractor mcqExtractor = new MCQExtractor();
         final List<ExtractionResult> extractionResults = mcqExtractor.extractMCQ(extractionParameters);
         final ExtractionResult sampleMCQResult = extractionResults.get(0);
-        Assert.assertEquals(HQ_CHARACTER_COUNT, sampleMCQResult.getRecognizedCharacters().length());
+        Assert.assertEquals(expectedCharacterCount, sampleMCQResult.getRecognizedCharacters().length());
+    }
+
+    private int getExpectedCharacterCount() {
+        if (OSUtils.isUnix()) {
+            return HQ_CHARACTER_COUNT_LINUX;
+        } else if (OSUtils.isMac()) {
+            return HQ_CHARACTER_COUNT_MAC;
+        }
+        return 0;
     }
 
     /**
