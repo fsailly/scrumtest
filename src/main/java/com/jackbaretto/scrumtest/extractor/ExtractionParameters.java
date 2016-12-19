@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Set up parameters for MCQ file(s) extraction.
+ * Set up parameters for MCQ file(s) extraction..
  * Created by florentsailly on 14/12/2016.
  */
 public class ExtractionParameters {
