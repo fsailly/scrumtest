@@ -13,8 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MCQExtraction {
 
-
-
     public static void main(String[] args) {
         SpringApplication.run(MCQExtraction.class, args);
     }
