@@ -1,4 +1,4 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

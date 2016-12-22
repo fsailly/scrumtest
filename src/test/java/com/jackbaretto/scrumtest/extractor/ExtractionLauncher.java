@@ -1,5 +1,7 @@
 package com.jackbaretto.scrumtest.extractor;
 
+import com.jackbaretto.scrumtest.MCQExtraction;
+
 import java.net.URL;
 
 /**

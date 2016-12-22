@@ -1,0 +1,2 @@
+INSERT INTO user (id,name, password) VALUES (1, 'ADMIN', '$2a$11$b4NZ3BXUSHA1VvRKU/RWce8dJClRlzTfxHEc6iC.l832IwEB0svl2');
+INSERT INTO user (id,name, password) VALUES (2, 'USER', '$2a$11$b4NZ3BXUSHA1VvRKU/RWce8dJClRlzTfxHEc6iC.l832IwEB0svl2');
