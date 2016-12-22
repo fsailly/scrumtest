@@ -25,7 +25,7 @@ public class MCQExtractor {
     }
 
     public List<ExtractionResult> extractMCQ(final ExtractionParameters extractionParameters) {
-        final List<ExtractionResult> extractionResults = new ArrayList<ExtractionResult>();
+        final List<ExtractionResult> extractionResults = new ArrayList<>();
         for (final File mcqPicture : extractionParameters.getMcqPictures()) {
             final ExtractionResult recognizedMcq = this.recognizeCharacters(mcqPicture);
             extractionResults.add(recognizedMcq);

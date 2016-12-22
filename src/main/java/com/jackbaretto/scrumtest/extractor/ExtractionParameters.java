@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class ExtractionParameters {
 
-    private final Set<File> mcqPictures = new HashSet<File>();
+    private final Set<File> mcqPictures = new HashSet<>();
 
     private final MimetypesFileTypeMap mimeTypes = new MimetypesFileTypeMap();
 

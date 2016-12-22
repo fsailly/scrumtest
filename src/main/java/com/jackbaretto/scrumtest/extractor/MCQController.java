@@ -23,7 +23,7 @@ public class MCQController {
 
     @RequestMapping(value = "/test")
     public void test() throws IOException {
-        List<ExtractionResult> mcqs = new ArrayList<ExtractionResult>();
+        List<ExtractionResult> mcqs = new ArrayList<>();
         ClassPathResource classPathResource = new ClassPathResource("/com/jackbaretto/scrumtest/extractor/samples");
         String url = classPathResource.getURL().getPath();
         mcqs.addAll(extractor.extractMCQ(new ExtractionParameters(url)));

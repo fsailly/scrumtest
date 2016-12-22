@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         User user = userRepository.findByName(username);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         //TODO Add granted authorities.

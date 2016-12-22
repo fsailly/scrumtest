@@ -15,9 +15,11 @@ import java.util.List;
 public class MCQServiceImpl implements MCQService {
     @Autowired
     private MCQRepository mcqRepository;
+    @Override
     public void save(List<ExtractionResult> mcqs) {
         mcqRepository.save(mcqs);
     }
+    @Override
     public Iterable<ExtractionResult> findAll(){
         return mcqRepository.findAll();
     }
