@@ -48,13 +48,13 @@ public class MCQExtractor {
     private ITesseract createOcr() {
 
         //JNA Interface Mapping
-        final ITesseract ocr = new Tesseract();
+        final ITesseract tesseract = new Tesseract();
 
         //You either set your own tessdata folder with your custom language pack or
         //use LoadLibs to load the default tessdata folder for you.
         //This is mandatory to provide one !!
 
-        ocr.setDatapath(LoadLibs.extractTessResources("tessdata").getAbsolutePath());
-        return ocr;
+        tesseract.setDatapath(LoadLibs.extractTessResources("tessdata").getAbsolutePath());
+        return tesseract;
     }
 }
