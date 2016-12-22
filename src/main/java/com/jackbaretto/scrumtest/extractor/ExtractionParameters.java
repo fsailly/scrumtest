@@ -42,6 +42,6 @@ public class ExtractionParameters {
     }
 
     public Set<File> getMcqPictures() {
-        return new HashSet<File>(this.mcqPictures);
+        return new HashSet<>(this.mcqPictures);
     }
 }

@@ -21,9 +21,6 @@ public class MCQExtractor {
 
     private final ITesseract ocr = createOcr();
 
-    public MCQExtractor() {
-    }
-
     public List<ExtractionResult> extractMCQ(final ExtractionParameters extractionParameters) {
         final List<ExtractionResult> extractionResults = new ArrayList<>();
         for (final File mcqPicture : extractionParameters.getMcqPictures()) {
