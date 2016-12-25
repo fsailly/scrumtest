@@ -3,7 +3,6 @@
 
 
 # EMBEDDED SERVER CONFIGURATION
-server.port=${port:8080}
+server:
+     port: 8000
 
-# PROFILES
-spring.profiles.active=dev
