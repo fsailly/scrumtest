@@ -20,6 +20,7 @@ public class User implements Serializable {
     @Column
     private String password;
 
+
     public String getName() {
         return name;
     }

@@ -12,7 +12,6 @@ import java.util.Set;
 
 /**
  * Service used for user authentication.
- * <p>
  * Created by mehdi on 22/12/16.
  */
 @Service
@@ -28,8 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UserNotFoundException("User " + username + " was not found in the database");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        //TODO Add granted authorities.
-        grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
+        grantedAuthorities.add(new SimpleGrantedAuthority(Authorities.USER.name()));
         return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), grantedAuthorities);
 
     }

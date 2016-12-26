@@ -19,7 +19,7 @@ public class ExtractionLauncher {
      * @return MCQ picture from Resource folder
      */
     private static String getSampleMCQUrl() {
-        final URL mcqUrl = ExtractionLauncher.class.getResource("samples");
+        final URL mcqUrl = ExtractionLauncher.class.getResource("com/samples");
         return mcqUrl.getFile();
     }
 }
