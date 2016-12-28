@@ -46,15 +46,14 @@ public class MCQExtractor {
      * Instanciates the OCR
      */
     private ITesseract createOcr() {
-
         //JNA Interface Mapping
-        final ITesseract tesseract = new Tesseract();
+        final ITesseract opticalCharacterRecognition = new Tesseract();
 
         //You either set your own tessdata folder with your custom language pack or
         //use LoadLibs to load the default tessdata folder for you.
         //This is mandatory to provide one !!
 
-        tesseract.setDatapath(LoadLibs.extractTessResources("tessdata").getAbsolutePath());
-        return tesseract;
+        opticalCharacterRecognition.setDatapath(LoadLibs.extractTessResources("tessdata").getAbsolutePath());
+        return opticalCharacterRecognition;
     }
 }
