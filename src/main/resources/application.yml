@@ -1,0 +1,8 @@
+# Application configuration. You can add profile, change server configuration, database configuration ...
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+
+
+# EMBEDDED SERVER CONFIGURATION
+server:
+     port: 8000
+

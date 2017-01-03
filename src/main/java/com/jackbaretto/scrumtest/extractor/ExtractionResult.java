@@ -1,14 +1,26 @@
 package com.jackbaretto.scrumtest.extractor;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Encapsulates the result of an OCR extraction
  * Created by florentsailly on 15/12/2016.
  */
-public class ExtractionResult {
+@Entity
+public class ExtractionResult implements Serializable{
 
     static final ExtractionResult EMPTY = new ExtractionResult("");
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    private final String recognizedCharacters;
+    @Column(columnDefinition="TEXT")
+    private String recognizedCharacters;
+
+    protected ExtractionResult(){
+
+    }
 
     public ExtractionResult(final String recognizedCharacters) {
 
@@ -37,4 +49,11 @@ public class ExtractionResult {
 
         return this.recognizedCharacters != null ? this.recognizedCharacters.hashCode() : 0;
     }
+
+
+    @Override
+    public String toString() {
+        return "ExtractionResult : "+recognizedCharacters;
+    }
+
 }

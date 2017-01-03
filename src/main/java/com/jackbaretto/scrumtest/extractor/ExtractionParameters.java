@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Set up parameters for MCQ file(s) extraction.
+ * Set up parameters for MCQ file(s) extraction..
  * Created by florentsailly on 14/12/2016.
  */
 public class ExtractionParameters {
 
-    private final Set<File> mcqPictures = new HashSet<File>();
+    private final Set<File> mcqPictures = new HashSet<>();
 
     private final MimetypesFileTypeMap mimeTypes = new MimetypesFileTypeMap();
 
@@ -42,6 +42,6 @@ public class ExtractionParameters {
     }
 
     public Set<File> getMcqPictures() {
-        return new HashSet<File>(this.mcqPictures);
+        return new HashSet<>(this.mcqPictures);
     }
 }
