@@ -1,6 +1,9 @@
 package com.jackbaretto.scrumtest.extractor;
 
+import com.baretto.mcq.datamodel.Question;
+
 import javax.persistence.*;
+import javax.swing.*;
 import java.io.Serializable;
 
 /**
@@ -17,6 +20,8 @@ public class ExtractionResult implements Serializable{
 
     @Column(columnDefinition="TEXT")
     private String recognizedCharacters;
+
+    private Question question;
 
     protected ExtractionResult(){
 
@@ -54,6 +59,10 @@ public class ExtractionResult implements Serializable{
     @Override
     public String toString() {
         return "ExtractionResult : "+recognizedCharacters;
+    }
+
+    public Question getQuestion() {
+        return question;
     }
 
 }
