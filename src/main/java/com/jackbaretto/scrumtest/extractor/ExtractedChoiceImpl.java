@@ -1,13 +1,13 @@
 package com.jackbaretto.scrumtest.extractor;
 
 /**
- * Created by mehdi on 11/01/17.
+ * Created by mehdi on 12/01/17.
  */
-public class ExtractedQuestionImpl implements ExtractedQuestion {
-    private String label;
+public class ExtractedChoiceImpl implements ExtractedChoice {
+    private final String label;
 
-    ExtractedQuestionImpl(String aLabel) {
-        label = aLabel;
+    public ExtractedChoiceImpl(String choiceLabel) {
+        label = choiceLabel;
     }
 
     @Override
@@ -17,14 +17,14 @@ public class ExtractedQuestionImpl implements ExtractedQuestion {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
+        if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        ExtractedQuestionImpl that = (ExtractedQuestionImpl) o;
+        ExtractedChoiceImpl that = (ExtractedChoiceImpl) o;
 
         return label != null ? label.equals(that.label) : that.label == null;
     }

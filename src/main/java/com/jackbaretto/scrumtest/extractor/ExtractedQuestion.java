@@ -1,7 +1,5 @@
 package com.jackbaretto.scrumtest.extractor;
 
-import com.baretto.mcq.datamodel.Question;
-
 /**
  * Question extracted from MCQ.
  * <p>

@@ -34,4 +34,5 @@ public class QuestionExtractorTest {
         questionExtractor.extract("Default string without any question.");
     }
 
+
 }
