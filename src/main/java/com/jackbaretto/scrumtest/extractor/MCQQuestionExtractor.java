@@ -8,24 +8,50 @@ import java.util.regex.Pattern;
  * <p>
  * Created by mehdi on 11/01/17.
  */
-public class MCQQuestionExtractor {
+class MCQQuestionExtractor {
 
-    public static final String QUESTION_PATTERN = "(.*[0-9]\\).*\\?)";
+    /**
+     * The question pattern is defined as following :
+     * - starts one character after the question number written followed by a right parenthesis.
+     * - finishes at the first punctuaction character found before the first "Bookmark" found after the question start.
+     */
+    private static final String DIRTY_QUESTION_PATTERN = "([0-9]+\\).*?)(?=Bookmark)";
+
+    /**
+     * Clean undesired extra characters added after the end of the question by the OCR
+     */
+    private static final String QUESTION_CLEANER_PATTERN = ".*[\\.\\:\\?]+";
 
     /**
      * Extract question from String.
      *
-     * @param extract String which contains a question.
+     * @param extraction String which contains a question.
      * @return result {@link ExtractionResult}
      */
-    public ExtractedQuestion extract(String extract) {
-        Pattern pattern = Pattern.compile(QUESTION_PATTERN);
-        Matcher matcher = pattern.matcher(extract);
-        String label = "";
-        if (matcher.find()) {
-            label = matcher.group(1);
-            String questionLabel = label.split("\\)")[1];
-            return new ExtractedQuestionImpl(questionLabel.trim());
+    ExtractedQuestion extract(final String extraction) {
+        final String dirtyLabel = extractDirtyLabel(extraction);
+        final String cleanLabel = cleanLabel(dirtyLabel);
+        return new ExtractedQuestionImpl(cleanLabel);
+
+    }
+
+    private String cleanLabel(final String dirtyLabel) {
+        final Pattern questionCleanerPattern = Pattern.compile(QUESTION_CLEANER_PATTERN, Pattern.DOTALL);
+        final Matcher questionCleanerMatcher = questionCleanerPattern.matcher(dirtyLabel);
+        if (questionCleanerMatcher.find()) {
+            return questionCleanerMatcher.group(0);
+        }
+        throw new QuestionNotFoundException();
+    }
+
+    private String extractDirtyLabel(final String extract) {
+        final Pattern dirtyQuestionPattern = Pattern.compile(DIRTY_QUESTION_PATTERN, Pattern.DOTALL);
+        final Matcher dirtyQuestionMatcher = dirtyQuestionPattern.matcher(extract);
+        final String unfilteredLabel;
+        if (dirtyQuestionMatcher.find()) {
+            unfilteredLabel = dirtyQuestionMatcher.group(1);
+            final String largeQuestionLabel = unfilteredLabel.split("\\)")[1];
+            return largeQuestionLabel.trim();
         }
         throw new QuestionNotFoundException();
     }

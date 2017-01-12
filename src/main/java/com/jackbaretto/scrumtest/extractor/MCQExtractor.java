@@ -21,7 +21,7 @@ public class MCQExtractor {
 
     private final ITesseract ocr = createOcr();
 
-    public List<ExtractionResult> extractMCQ(final ExtractionParameters extractionParameters) {
+    List<ExtractionResult> extractMCQ(final ExtractionParameters extractionParameters) {
         final List<ExtractionResult> extractionResults = new ArrayList<>();
         for (final File mcqPicture : extractionParameters.getMcqPictures()) {
             final ExtractionResult recognizedMcq = this.recognizeCharacters(mcqPicture);
@@ -32,7 +32,6 @@ public class MCQExtractor {
 
     private ExtractionResult recognizeCharacters(final File mcqPicture) {
         try {
-            // TODO : faire un test sur la reconnaissance de N caractères ??
             final String recognizeCharacters = this.ocr.doOCR(mcqPicture);
             Logger.getLogger(MCQExtractor.class.getName()).info(recognizeCharacters);
             return new ExtractionResult(recognizeCharacters);
