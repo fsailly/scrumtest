@@ -1,9 +1,6 @@
 package com.jackbaretto.scrumtest.extractor;
 
-import com.baretto.mcq.datamodel.Question;
-
 import javax.persistence.*;
-import javax.swing.*;
 import java.io.Serializable;
 
 /**
