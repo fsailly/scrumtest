@@ -4,6 +4,9 @@ import com.baretto.mcq.datamodel.Question;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by mehdi on 11/01/17.
  */
@@ -40,16 +43,21 @@ public class QuestionExtractorTest {
             "a\n" +
             "I .";
 
-    private final  String expectedQuestion ="What is the main reason for the Scrum Master to be at the Daily Scrum?";
-
+    private final String expectedQuestion = "What is the main reason for the Scrum Master to be at the Daily Scrum?";
 
 
     @Test
-    public void testExtractQuestion(){
+    public void testExtractQuestion() {
         MCQQuestionExtractor questionExtractor = new MCQQuestionExtractor();
-        ExtractedQuestion extractedQuestion =  questionExtractor.extract(extract);
+        ExtractedQuestion extractedQuestion = questionExtractor.extract(extract);
         Assert.assertEquals(expectedQuestion, extractedQuestion.getLabel());
     }
 
+
+    @Test(expected = QuestionNotFoundException.class)
+    public void testExtractorCantExtractQuestion() {
+        MCQQuestionExtractor questionExtractor = new MCQQuestionExtractor();
+        questionExtractor.extract("Default string without any question.");
+    }
 
 }
