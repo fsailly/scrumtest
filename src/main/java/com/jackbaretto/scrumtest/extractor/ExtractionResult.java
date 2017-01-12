@@ -21,8 +21,6 @@ public class ExtractionResult implements Serializable{
     @Column(columnDefinition="TEXT")
     private String recognizedCharacters;
 
-    private Question question;
-
     protected ExtractionResult(){
 
     }
@@ -61,8 +59,5 @@ public class ExtractionResult implements Serializable{
         return "ExtractionResult : "+recognizedCharacters;
     }
 
-    public Question getQuestion() {
-        return question;
-    }
 
 }
