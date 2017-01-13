@@ -8,4 +8,6 @@ public interface ExtractedChoice {
 
     String getLabel();
 
+    boolean isSelected();
+
 }
