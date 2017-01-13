@@ -8,7 +8,6 @@ import org.junit.Test;
  */
 public class QuestionExtractorTest {
 
-
     private final String expectedQuestion = "What is the main reason for the Scrum Master to be at the Daily Scrum?";
 
     private final String expectedAssertion = "The Product Owner must reIease each Increment to production.";
