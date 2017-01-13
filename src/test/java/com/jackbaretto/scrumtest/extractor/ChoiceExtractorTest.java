@@ -17,6 +17,13 @@ public class ChoiceExtractorTest {
     private String expectedClassicQuestionChoiceD = "To gather status and progress information to report to\n" +
             "management.";
 
+
+    private  String expectedAssertionChoiceA = "Without exception.";
+    private  String expectedAssertionChoiceB = "Whenever the product is free of defects." ;
+    private  String expectedAssertionChoiceC = "To make sure the Deve|opment Team is done every Sprint.";
+    private  String expectedAssertionChoiceD = "When it makes sense.";
+
+
     @Test
     public void testExtractChoicesFromClassicQuestion() {
         MCQChoiceExtractor choiceExtractor = new MCQChoiceExtractor();
@@ -26,5 +33,17 @@ public class ChoiceExtractorTest {
         Assert.assertEquals(expectedClassicQuestionChoiceB, choices.get(1).getLabel());
         Assert.assertEquals(expectedClassicQuestionChoiceC, choices.get(2).getLabel());
         Assert.assertEquals(expectedClassicQuestionChoiceD, choices.get(3).getLabel());
+    }
+
+
+    @Test
+    public void testExtractChoicesFromAssertionToComplete() {
+        MCQChoiceExtractor choiceExtractor = new MCQChoiceExtractor();
+        final List<ExtractedChoice> choices = choiceExtractor.extract(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION.getExtractedQuestionLabel());
+        Assert.assertEquals(4, choices.size());
+        Assert.assertEquals(expectedAssertionChoiceA, choices.get(0).getLabel());
+        Assert.assertEquals(expectedAssertionChoiceB, choices.get(1).getLabel());
+        Assert.assertEquals(expectedAssertionChoiceC, choices.get(2).getLabel());
+        Assert.assertEquals(expectedAssertionChoiceD, choices.get(3).getLabel());
     }
 }
