@@ -58,8 +58,8 @@ public class ChoiceExtractorTest {
         final List<ExtractedChoice> choices = choiceExtractor.extract(ExtractedSampleQuestions.QUESTION_TRUE_FALSE.getExtractedQuestionLabel());
         Assert.assertEquals(2, choices.size());
 
-        Assert.assertEquals(Boolean.toString(Boolean.TRUE), choices.get(0).getLabel());
-        Assert.assertEquals(Boolean.toString(Boolean.FALSE), choices.get(1).getLabel());
+        Assert.assertEquals("True", choices.get(0).getLabel());
+        Assert.assertEquals("False", choices.get(1).getLabel());
     }
 
 
