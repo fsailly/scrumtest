@@ -59,7 +59,7 @@ public class ChoiceExtractorTest {
         Assert.assertEquals(2, choices.size());
 
         Assert.assertEquals("True", choices.get(0).getLabel());
-        Assert.assertEquals("False", choices.get(1).getLabel());
+        Assert.assertEquals("Fa|se", choices.get(1).getLabel());
     }
 
 

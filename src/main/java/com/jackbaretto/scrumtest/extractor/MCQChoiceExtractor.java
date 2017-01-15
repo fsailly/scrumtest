@@ -22,7 +22,8 @@ class MCQChoiceExtractor {
     private static final int CHOICES_START_INDEX = 0;
     private static final int SELECTED_CHOICE_BEGIN_INDEX = 2;
     private static final int NO_SELECTION_FOUND = 1;
-    private static final String FIND_SELECTION_PATTERN = "^\\s[\\.0I]\\s";
+    private static final String FIND_SELECTION_PATTERN = "^\\s[\\.0I']\\s";
+    public static final String SUBMIT_BUTTON = "Submit <";
 
     /**
      * Extract a list of {@link ExtractedChoice} from String.
@@ -51,16 +52,21 @@ class MCQChoiceExtractor {
      * @return a cleaned choice label
      */
     private String cleanChoiceLabel(final String choiceRawLabel) {
-        final Pattern sentencesPattern = Pattern.compile(CHOICE_SENTENCES_PARSER, Pattern.DOTALL);
-        final Matcher sentencesMatcher = sentencesPattern.matcher(choiceRawLabel);
-        final StringBuilder finalChoiceLabel = new StringBuilder();
-        while (sentencesMatcher.find()) {
-            final String unfilteredLabel = sentencesMatcher.group();
-            if (unfilteredLabel.length() > MINIMUM_SENTENCE_LENGHT) {
-                finalChoiceLabel.append(unfilteredLabel);
+        if(choiceRawLabel.contains(".")){
+            final Pattern sentencesPattern = Pattern.compile(CHOICE_SENTENCES_PARSER, Pattern.DOTALL);
+            final Matcher sentencesMatcher = sentencesPattern.matcher(choiceRawLabel);
+            final StringBuilder finalChoiceLabel = new StringBuilder();
+            while (sentencesMatcher.find()) {
+                final String unfilteredLabel = sentencesMatcher.group();
+                if (unfilteredLabel.length() > MINIMUM_SENTENCE_LENGHT) {
+                    finalChoiceLabel.append(unfilteredLabel);
+                }
             }
+            return finalChoiceLabel.toString();
+        }else{
+            //Retrieve before submit button.
+            return choiceRawLabel.split(SUBMIT_BUTTON)[0];
         }
-        return finalChoiceLabel.toString();
     }
 
     /**
