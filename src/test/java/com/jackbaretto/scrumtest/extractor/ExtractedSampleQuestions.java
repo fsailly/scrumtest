@@ -7,7 +7,10 @@ package com.jackbaretto.scrumtest.extractor;
  */
 public enum ExtractedSampleQuestions {
 
-    CLASSIC_QUESTION_FULL_EXTRACTION(ExtractedSampleQuestions.CLASSIC_QUESTION_FULL_EXTRACTION_LABEL), ASSERTION_TO_COMPLETE_FULL_EXTRACTION(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION_LABEL);
+    CLASSIC_QUESTION_FULL_EXTRACTION(ExtractedSampleQuestions.CLASSIC_QUESTION_FULL_EXTRACTION_LABEL),
+    ASSERTION_TO_COMPLETE_FULL_EXTRACTION(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION_LABEL),
+    QUESTION_WITH_SHORT_CHOICES(ExtractedSampleQuestions.QUESTION_WITH_SHORT_CHOICES_LABEL),
+    QUESTION_TRUE_FALSE(ExtractedSampleQuestions.QUESTION_TRUE_FALSE_LABEL);
 
     private static final String CLASSIC_QUESTION_FULL_EXTRACTION_LABEL = "scrummg i Assessment - PSM i - coogle chrome ? ﬂ iii E; E‘ _ r l')\n" +
             "6 / oMm. Drive»GooglE x Y M Fwd:PSM|Assessr x Y w meessionalScrun x » 9 SLrurluzrgIAsses: x m_ imi\n" +
@@ -39,6 +42,63 @@ public enum ExtractedSampleQuestions {
             ".\n" +
             "a\n" +
             "I .";
+    private static final String QUESTION_WITH_SHORT_CHOICES_LABEL = "< 111 H mytestcom.net C 0 iii @\n" +
+            "Professiona| Scrum Master Subject Areas Scrum.org | Assessment - PSM I +\n" +
+            "Assessment - PSM I\n" +
+            "V Assessment - -\n" +
+            "You are taking the fo|lowing assessment:\n" +
+            "Name PSM I\n" +
+            "Description Professional Scrum Master I Assessment\n" +
+            "Timer Time Remaining (minutes:seconds) : 56:42\n" +
+            "Question\n" +
+            "Use one of the Submit buttons to save your answer and move to the next or previous question. You can a|so use the Bookmark\n" +
+            "button to save your answers and navigate to any other question page. PIease note, when you've answered a|| the questions, you\n" +
+            "must oiick the Save and Finish button on the ﬁna| question page to indiIIte you're done taking this test and it's now ready to be\n" +
+            "soored.\n" +
+            "8) Which Scrum Va|ue is affected by a Iack of trust in the Scrum Team?\n" +
+            "7 Bookmark this question\n" +
+            "\n" +
+            "Choose one answer.\n" +
+            "\n" +
+            "A) Commitment\n" +
+            "\n" +
+            "B) Courage\n" +
+            "\n" +
+            "C) 0penness\n" +
+            "\n" +
+            "D) Foous\n" +
+            "\n" +
+            "E) Respect\n" +
+            "\n" +
+            "F) 0 AH of the above\n" +
+            "\n" +
+            "Submit <— Back Submit -> Forward\n" +
+            "Open Bookmarks";
+
+    private static final String QUESTION_TRUE_FALSE_LABEL="< [l] E mytestcom.net C 0 iii @\n" +
+            "Professiona| Scrum Master subject Areas Scrum.org | Assessment - PSM I +\n" +
+            "Assessment - PSM I\n" +
+            "V Assessment - -\n" +
+            "You are taking the fo|lowing assessment:\n" +
+            "Name PSM I\n" +
+            "Description Professional Scrum Master I Assessment\n" +
+            "Timer Time Remaining (minutes:seconds) : 52:55\n" +
+            "Quesiion\n" +
+            "Use one of the Submit buttons to save your answer and move to the next or previous question. You can a|so use the Bookmark\n" +
+            "button to save your answers and navigate to any other question page. PIease note, when you've answered a|| the questions, you\n" +
+            "must oiick the Save and Finish button on the ﬁna| question page to indiIIte you're done taking this test and it's now ready to be\n" +
+            "soored.\n" +
+            "15) The sprint Goa| is a resuIt of sprint P|anning, as is the Sprint Back|og.\n" +
+            "7 Bookmark this question\n" +
+            "\n" +
+            "Choose one answer.\n" +
+            "\n" +
+            "A) 0 True\n" +
+            "\n" +
+            "B) ' Fa|se\n" +
+            "\n" +
+            "Submit <- Back Submit -> Forward\n" +
+            "Open Bookmarks";
 
     private static final String ASSERTION_TO_COMPLETE_FULL_EXTRACTION_LABEL = "< 111 u mytestcom.net O 0 ﬁ @\n" +
             "Professiona| Scrum Master Subject Areas Scrum.org | Assessment - PSM I +\n" +
