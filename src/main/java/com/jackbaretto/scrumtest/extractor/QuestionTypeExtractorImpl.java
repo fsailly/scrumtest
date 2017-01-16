@@ -10,11 +10,10 @@ import java.util.regex.Pattern;
  */
 @Component
 public class QuestionTypeExtractorImpl implements QuestionTypeExtractor {
-
-
-    public static final String N_RESPONSES_PATTERN = "^((.*?(\\bChoose\\b)).*?(\\banswers\\b))";
-    public static final String ONE_RESPONSE_PATTERN = "Choose one answer";
-    public static final String ALL_THAT_APPLY_PATTERN = "Choose all that";
+    /** If extraction contains "Choose * answers", the question have * responses.*/
+    private static final String N_RESPONSES_PATTERN = "^((.*?(\\bChoose\\b)).*?(\\banswers\\b))";
+    private static final String ONE_RESPONSE_PATTERN = "Choose one answer";
+    private static final String ALL_THAT_APPLY_PATTERN = "Choose all that";
 
     @Override
     public QuestionType extract(String extraction) {
