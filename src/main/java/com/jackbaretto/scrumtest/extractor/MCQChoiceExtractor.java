@@ -1,6 +1,7 @@
 package com.jackbaretto.scrumtest.extractor;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.regex.Pattern;
  * <p>
  * Created by mehdi on 12/01/17.
  */
+@Component
 class MCQChoiceExtractor {
     /**
      * a Fix to remove undesired characters at the end of the choices labels

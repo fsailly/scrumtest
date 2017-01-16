@@ -8,4 +8,6 @@ package com.jackbaretto.scrumtest.extractor;
 public interface ExtractedQuestion {
 
     String getLabel();
+
+    QuestionType getType();
 }

@@ -7,10 +7,43 @@ package com.jackbaretto.scrumtest.extractor;
  */
 public enum ExtractedSampleQuestions {
 
-    CLASSIC_QUESTION_FULL_EXTRACTION(ExtractedSampleQuestions.CLASSIC_QUESTION_FULL_EXTRACTION_LABEL),
-    ASSERTION_TO_COMPLETE_FULL_EXTRACTION(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION_LABEL),
-    QUESTION_WITH_SHORT_CHOICES(ExtractedSampleQuestions.QUESTION_WITH_SHORT_CHOICES_LABEL),
-    QUESTION_TRUE_FALSE(ExtractedSampleQuestions.QUESTION_TRUE_FALSE_LABEL);
+    CLASSIC_QUESTION_FULL_EXTRACTION(ExtractedSampleQuestions.CLASSIC_QUESTION_FULL_EXTRACTION_LABEL, QuestionType.ONE_RESPONSE),
+    ASSERTION_TO_COMPLETE_FULL_EXTRACTION(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION_LABEL, QuestionType.ONE_RESPONSE),
+    QUESTION_WITH_SHORT_CHOICES(ExtractedSampleQuestions.QUESTION_WITH_SHORT_CHOICES_LABEL, QuestionType.ONE_RESPONSE),
+    QUESTION_TRUE_FALSE(ExtractedSampleQuestions.QUESTION_TRUE_FALSE_LABEL, QuestionType.ONE_RESPONSE),
+    MULTI_CHOICES_QUESTION(ExtractedSampleQuestions.MULTI_CHOICES_QUESTION_LABEL, QuestionType.ALL_THAT_APPLY),
+    QUESTION_WITH_TWO_RESPONSES(ExtractedSampleQuestions.QUESTION_WITH_TWO_RESPONSES_LABEL, QuestionType.N_RESPONSE);
+
+
+    private static final String QUESTION_WITH_TWO_RESPONSES_LABEL = " E mytestcom.net C 0 iii @\n" +
+            "Professiona| Scrum Master $ubject Areas I Scrum.org | Assessment - PSM I +\n" +
+            "AssessmenI - PSM I\n" +
+            "V Assessment - -\n" +
+            "You are taking the fo|lowing assessment:\n" +
+            "Name PSM I\n" +
+            "Description Professional Scrum Master I Assessment\n" +
+            "Timer Time Remaining (minutes:seconds) : 49:53\n" +
+            "Quesﬁon\n" +
+            "Use one of the Submit buttons to save your answer and move to the next or previous question. You can a|so use the Bookmark\n" +
+            "button to save your answers and navigate to any other question page. PIease note, when you've answered a|| the questions, you\n" +
+            "must oiick the Save and Finish button on the ﬁna| question page to indiIIte you're done taking this test and it's now ready to be\n" +
+            "soored.\n" +
+            "23) What are the two primary ways a Scrum Master keeps a Deve|opment Team working at its highest leve| of\n" +
+            "productivity?\n" +
+            "7 Bookmark this question\n" +
+            "\n" +
+            "Choose 2 answers.\n" +
+            "\n" +
+            "A) By faciIitating DeveIopment Team decisions\n" +
+            "\n" +
+            "B) T By ensuring the meetings start and end at the proper time\n" +
+            "\n" +
+            "C) By removing impedimenIs that hinder the DeveIopment Team\n" +
+            "\n" +
+            "D) T By keeping high va|ue features high in the Product Bachog\n" +
+            "\n" +
+            "Submit <— Back Submit —> Forward\n" +
+            "Open Bookmarks";
 
     private static final String CLASSIC_QUESTION_FULL_EXTRACTION_LABEL = "scrummg i Assessment - PSM i - coogle chrome ? ﬂ iii E; E‘ _ r l')\n" +
             "6 / oMm. Drive»GooglE x Y M Fwd:PSM|Assessr x Y w meessionalScrun x » 9 SLrurluzrgIAsses: x m_ imi\n" +
@@ -42,6 +75,37 @@ public enum ExtractedSampleQuestions {
             ".\n" +
             "a\n" +
             "I .";
+
+    private static final String MULTI_CHOICES_QUESTION_LABEL="111 E mytestcom.net C 0 iii @\n" +
+            "Professiona| Scrum Master subject Areas Scrum.org | Assessment - PSM I +\n" +
+            "Assessment - PSM I\n" +
+            "V Assessment - -\n" +
+            "You are taking the fo|lowing assessment:\n" +
+            "Name PSM I\n" +
+            "Description Professional Scrum Master I Assessment\n" +
+            "Timer Time Remaining (minutes:seconds) : 49:08\n" +
+            "Question\n" +
+            "Use one of the Submit buttons to save your answer and move to the next or previous question. You can a|so use the Bookmark\n" +
+            "button to save your answers and navigate to any other question page. PIease note, when you've answered a|| the questions, you\n" +
+            "must olick the Save and Finish button on the ﬁna| question page to indiIIte you're done taking this test and it's now ready to be\n" +
+            "soored.\n" +
+            "26) Which of the fo||owing are ro|es on a Scrum Team?\n" +
+            "7 Bookmark this question\n" +
+            "\n" +
+            "Choose all that appIy.\n" +
+            "\n" +
+            "A) Scrum Master\n" +
+            "\n" +
+            "B) T Users\n" +
+            "\n" +
+            "C) T Customers\n" +
+            "\n" +
+            "D) DeveIopment Team\n" +
+            "\n" +
+            "E) Product Owner\n" +
+            "\n" +
+            "Submit <— Back Submit -> Forward\n" +
+            "Open Bookmarks";
     private static final String QUESTION_WITH_SHORT_CHOICES_LABEL = "< 111 H mytestcom.net C 0 iii @\n" +
             "Professiona| Scrum Master Subject Areas Scrum.org | Assessment - PSM I +\n" +
             "Assessment - PSM I\n" +
@@ -130,9 +194,8 @@ public enum ExtractedSampleQuestions {
             "Open Bookmarks";
 
     private final ExtractedQuestionImpl extractedQuestion;
-
-    ExtractedSampleQuestions(final String theExtractedQuestion) {
-        this.extractedQuestion = new ExtractedQuestionImpl(theExtractedQuestion);
+    ExtractedSampleQuestions(final String theExtractedQuestion, final QuestionType questionType) {
+        this.extractedQuestion = new ExtractedQuestionImpl(theExtractedQuestion, questionType);
     }
 
     public String getExtractedQuestionLabel() {

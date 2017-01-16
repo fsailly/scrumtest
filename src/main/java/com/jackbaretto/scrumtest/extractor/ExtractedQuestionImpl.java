@@ -1,13 +1,18 @@
 package com.jackbaretto.scrumtest.extractor;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 /**
  * Created by mehdi on 11/01/17.
  */
 public class ExtractedQuestionImpl implements ExtractedQuestion {
     private String label;
+    private QuestionType type;
 
-    ExtractedQuestionImpl(String aLabel) {
+    ExtractedQuestionImpl(String aLabel, QuestionType aType) {
         label = aLabel;
+        type = aType;
     }
 
     @Override
@@ -16,21 +21,17 @@ public class ExtractedQuestionImpl implements ExtractedQuestion {
     }
 
     @Override
+    public QuestionType getType() {
+        return type;
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (this == o){
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            return false;
-        }
-
-        ExtractedQuestionImpl that = (ExtractedQuestionImpl) o;
-
-        return label != null ? label.equals(that.label) : that.label == null;
+        return EqualsBuilder.reflectionEquals(this,o);
     }
 
     @Override
     public int hashCode() {
-        return label != null ? label.hashCode() : 0;
+       return  HashCodeBuilder.reflectionHashCode(this);
     }
 }

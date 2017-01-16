@@ -1,5 +1,8 @@
 package com.jackbaretto.scrumtest.extractor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,7 +11,9 @@ import java.util.regex.Pattern;
  * <p>
  * Created by mehdi on 11/01/17.
  */
+@Component
 class MCQQuestionExtractor {
+
 
     /**
      * The question pattern is defined as following :
@@ -21,6 +26,8 @@ class MCQQuestionExtractor {
      * Clean undesired extra characters added after the end of the question by the OCR
      */
     private static final String QUESTION_CLEANER_PATTERN = ".*[\\.\\:\\?]+";
+    @Autowired
+    private QuestionTypeExtractor questionTypeExtractor;
 
     /**
      * Extract question from String.
@@ -31,9 +38,12 @@ class MCQQuestionExtractor {
     ExtractedQuestion extract(final String extraction) {
         final String dirtyLabel = extractDirtyLabel(extraction);
         final String cleanLabel = cleanLabel(dirtyLabel);
-        return new ExtractedQuestionImpl(cleanLabel);
+        final QuestionType questionType = questionTypeExtractor.extract(extraction);
+        return new ExtractedQuestionImpl(cleanLabel,questionType);
 
     }
+
+
 
     private String cleanLabel(final String dirtyLabel) {
         final Pattern questionCleanerPattern = Pattern.compile(QUESTION_CLEANER_PATTERN, Pattern.DOTALL);

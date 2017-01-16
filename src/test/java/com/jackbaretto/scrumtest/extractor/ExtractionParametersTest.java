@@ -18,7 +18,7 @@ public class ExtractionParametersTest {
 
 
         Set<File> pictures = extractionParameters.getMcqPictures();
-        Assert.assertEquals(6, pictures.size());
+        Assert.assertEquals(8, pictures.size());
         for (File eachPicture : pictures) {
             Assert.assertTrue(eachPicture.getName().endsWith(".png"));
         }
