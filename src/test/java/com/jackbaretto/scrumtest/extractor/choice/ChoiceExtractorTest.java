@@ -1,5 +1,7 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.choice;
 
+import com.jackbaretto.scrumtest.extractor.question.ExtractedQuestionImpl;
+import com.jackbaretto.scrumtest.extractor.question.ExtractedSampleQuestions;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,7 +36,7 @@ public class ChoiceExtractorTest {
     @Test
     public void testExtractShortChoices(){
         final MCQChoiceExtractor choiceExtractor = new MCQChoiceExtractor();
-        final List<ExtractedChoice> choices = choiceExtractor.extract(ExtractedSampleQuestions.QUESTION_WITH_SHORT_CHOICES.getExtractedQuestionLabel());
+        final List<ExtractedChoiceImpl> choices = choiceExtractor.extract(ExtractedSampleQuestions.QUESTION_WITH_SHORT_CHOICES.getExtractedQuestionLabel());
         Assert.assertEquals(6, choices.size());
 
         Assert.assertEquals(this.expectedShortChoiceA, choices.get(0).getLabel());
@@ -55,7 +57,7 @@ public class ChoiceExtractorTest {
     @Test
     public void testExtractTrueOrFalseChoices(){
         final MCQChoiceExtractor choiceExtractor = new MCQChoiceExtractor();
-        final List<ExtractedChoice> choices = choiceExtractor.extract(ExtractedSampleQuestions.QUESTION_TRUE_FALSE.getExtractedQuestionLabel());
+        final List<ExtractedChoiceImpl> choices = choiceExtractor.extract(ExtractedSampleQuestions.QUESTION_TRUE_FALSE.getExtractedQuestionLabel());
         Assert.assertEquals(2, choices.size());
 
         Assert.assertEquals("True", choices.get(0).getLabel());
@@ -66,7 +68,7 @@ public class ChoiceExtractorTest {
     @Test
     public void testExtractChoicesFromClassicQuestion() {
         final MCQChoiceExtractor choiceExtractor = new MCQChoiceExtractor();
-        final List<ExtractedChoice> choices = choiceExtractor.extract(ExtractedSampleQuestions.CLASSIC_QUESTION_FULL_EXTRACTION.getExtractedQuestionLabel());
+        final List<ExtractedChoiceImpl> choices = choiceExtractor.extract(ExtractedSampleQuestions.CLASSIC_QUESTION_FULL_EXTRACTION.getExtractedQuestionLabel());
         Assert.assertEquals(4, choices.size());
         Assert.assertEquals(this.expectedClassicQuestionChoiceA, choices.get(0).getLabel());
         Assert.assertEquals(this.expectedClassicQuestionChoiceB, choices.get(1).getLabel());
@@ -82,7 +84,7 @@ public class ChoiceExtractorTest {
     @Test
     public void testExtractChoicesFromAssertionToComplete() {
         final MCQChoiceExtractor choiceExtractor = new MCQChoiceExtractor();
-        final List<ExtractedChoice> choices = choiceExtractor.extract(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION.getExtractedQuestionLabel());
+        final List<ExtractedChoiceImpl> choices = choiceExtractor.extract(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION.getExtractedQuestionLabel());
         Assert.assertEquals(4, choices.size());
         Assert.assertEquals(this.expectedAssertionChoiceA, choices.get(0).getLabel());
         Assert.assertEquals(this.expectedAssertionChoiceB, choices.get(1).getLabel());

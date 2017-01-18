@@ -1,4 +1,4 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.type;
 
 /**
  * Thrown if an {@link QuestionTypeExtractor} implementation cannot extract a {@link QuestionType}O

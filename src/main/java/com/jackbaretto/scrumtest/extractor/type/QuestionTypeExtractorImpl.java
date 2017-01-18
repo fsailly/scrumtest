@@ -1,4 +1,4 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.type;
 
 import org.springframework.stereotype.Component;
 
@@ -8,8 +8,9 @@ import java.util.regex.Pattern;
 /**
  * Created by mehdi on 16/01/17.
  */
-@Component
+@Component("questionTypeExtractor")
 public class QuestionTypeExtractorImpl implements QuestionTypeExtractor {
+
     /** If extraction contains "Choose * answers", the question have * responses.*/
     private static final String N_RESPONSES_PATTERN = "^((.*?(\\bChoose\\b)).*?(\\banswers\\b))";
     private static final String ONE_RESPONSE_PATTERN = "Choose one answer";

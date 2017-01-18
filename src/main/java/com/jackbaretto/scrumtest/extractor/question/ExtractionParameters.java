@@ -1,4 +1,4 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.question;
 
 import javax.activation.MimetypesFileTypeMap;
 import java.io.File;

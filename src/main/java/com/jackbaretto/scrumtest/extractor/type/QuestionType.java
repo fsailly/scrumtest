@@ -1,4 +1,4 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.type;
 
 /**
  * Represent the constraint on the answer of a MCQ question:

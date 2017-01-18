@@ -1,5 +1,6 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.type;
 
+import com.jackbaretto.scrumtest.extractor.question.ExtractedSampleQuestions;
 import org.junit.Assert;
 import org.junit.Test;
 

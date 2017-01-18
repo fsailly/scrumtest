@@ -2,6 +2,7 @@ package com.jackbaretto.scrumtest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 /**
  * Extract the MCQ from screenshots. To run this class properly, you need to get the right Tesserect library (C++) built for your OS.
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Created by florentsailly on 07/12/2016.
  */
 @SpringBootApplication
+@EntityScan(basePackages = "com.jackbaretto.scrumtest")
 public class MCQExtraction {
     MCQExtraction() {
 
