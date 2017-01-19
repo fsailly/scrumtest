@@ -1,5 +1,7 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.question;
 
+import com.jackbaretto.scrumtest.extractor.type.QuestionType;
+import com.jackbaretto.scrumtest.extractor.type.QuestionTypeExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +14,7 @@ import java.util.regex.Pattern;
  * Created by mehdi on 11/01/17.
  */
 @Component
-class MCQQuestionExtractor {
+public class MCQQuestionExtractor {
 
 
     /**
@@ -35,7 +37,7 @@ class MCQQuestionExtractor {
      * @param extraction String which contains a question.
      * @return result {@link ExtractionResult}
      */
-    ExtractedQuestion extract(final String extraction) {
+    ExtractedQuestionImpl extract(final String extraction) {
         final String dirtyLabel = extractDirtyLabel(extraction);
         final String cleanLabel = cleanLabel(dirtyLabel);
         final QuestionType questionType = questionTypeExtractor.extract(extraction);

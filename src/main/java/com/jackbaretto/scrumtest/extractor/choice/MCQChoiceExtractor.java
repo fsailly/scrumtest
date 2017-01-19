@@ -1,5 +1,6 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.choice;
 
+import com.jackbaretto.scrumtest.extractor.question.ExtractionResult;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ import java.util.regex.Pattern;
  * Created by mehdi on 12/01/17.
  */
 @Component
-class MCQChoiceExtractor {
+public class MCQChoiceExtractor {
     /**
      * a Fix to remove undesired characters at the end of the choices labels
      */
@@ -28,14 +29,14 @@ class MCQChoiceExtractor {
     public static final String SUBMIT_BUTTON = "Submit <";
 
     /**
-     * Extract a list of {@link ExtractedChoice} from String.
+     * Extract a list of {@link ExtractedChoiceImpl} from String.
      *
      * @param extraction String which contains a question.
      * @return result {@link ExtractionResult}
      */
-    List<ExtractedChoice> extract(final String extraction) {
+    public List<ExtractedChoiceImpl> extract(final String extraction) {
         final String[] choicesRawLabels = removeQuestionHeader(extraction);
-        final List<ExtractedChoice> extractedChoices = new ArrayList();
+        final List<ExtractedChoiceImpl> extractedChoices = new ArrayList();
         for (String eachChoiceRawLabel : choicesRawLabels) {
             final boolean selected = detectIfSelected(eachChoiceRawLabel);
             if (selected) {

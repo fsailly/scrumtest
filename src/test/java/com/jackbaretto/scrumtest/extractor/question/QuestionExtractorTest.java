@@ -1,17 +1,14 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.question;
 
+import com.jackbaretto.scrumtest.extractor.type.QuestionType;
+import com.jackbaretto.scrumtest.extractor.type.QuestionTypeExtractor;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Created by mehdi on 11/01/17.
@@ -34,7 +31,7 @@ public class QuestionExtractorTest {
     @Test
     public void testExtractClassicQuestion() {
         Mockito.when(questionTypeExtractor.extract(Mockito.anyString())).thenReturn(QuestionType.ONE_RESPONSE);
-        final ExtractedQuestion extractedQuestion = mcqQuestionExtractor.extract(ExtractedSampleQuestions.CLASSIC_QUESTION_FULL_EXTRACTION.getExtractedQuestionLabel());
+        final ExtractedQuestionImpl extractedQuestion = mcqQuestionExtractor.extract(ExtractedSampleQuestions.CLASSIC_QUESTION_FULL_EXTRACTION.getExtractedQuestionLabel());
         Assert.assertEquals(this.expectedQuestion, extractedQuestion.getLabel());
         Assert.assertEquals(QuestionType.ONE_RESPONSE, extractedQuestion.getType());
     }
@@ -42,7 +39,7 @@ public class QuestionExtractorTest {
     @Test
     public void testExtractAssertionToComplete() {
         Mockito.when(questionTypeExtractor.extract(Mockito.anyString())).thenReturn(QuestionType.ONE_RESPONSE);
-        final ExtractedQuestion extractedQuestion = mcqQuestionExtractor.extract(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION.getExtractedQuestionLabel());
+        final ExtractedQuestionImpl extractedQuestion = mcqQuestionExtractor.extract(ExtractedSampleQuestions.ASSERTION_TO_COMPLETE_FULL_EXTRACTION.getExtractedQuestionLabel());
         Assert.assertEquals(this.expectedAssertion, extractedQuestion.getLabel());
         Assert.assertEquals(QuestionType.ONE_RESPONSE, extractedQuestion.getType());
     }
@@ -50,7 +47,7 @@ public class QuestionExtractorTest {
     @Test
     public void testExtractTrueFalseQuestion(){
         Mockito.when(questionTypeExtractor.extract(Mockito.anyString())).thenReturn(QuestionType.ONE_RESPONSE);
-        final ExtractedQuestion extractedQuestion = mcqQuestionExtractor.extract(ExtractedSampleQuestions.QUESTION_TRUE_FALSE.getExtractedQuestionLabel());
+        final ExtractedQuestionImpl extractedQuestion = mcqQuestionExtractor.extract(ExtractedSampleQuestions.QUESTION_TRUE_FALSE.getExtractedQuestionLabel());
         Assert.assertEquals(this.expectedTrueFalseQuestion, extractedQuestion.getLabel());
         Assert.assertEquals(QuestionType.ONE_RESPONSE, extractedQuestion.getType());
     }

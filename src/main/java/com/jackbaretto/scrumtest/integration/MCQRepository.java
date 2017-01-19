@@ -1,5 +1,6 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.integration;
 
+import com.jackbaretto.scrumtest.extractor.question.ExtractedQuestionImpl;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * Created by mehdi on 14/12/16.
  */
 @Repository
-public interface MCQRepository extends CrudRepository<ExtractionResult,Long> {
+public interface MCQRepository extends CrudRepository<ExtractedQuestionImpl,Long> {
 
 }

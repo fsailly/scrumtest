@@ -1,4 +1,6 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.question;
+
+import com.jackbaretto.scrumtest.extractor.type.QuestionType;
 
 /**
  * Sample questions extracted by the OCR
