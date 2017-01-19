@@ -1,4 +1,8 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.question;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,7 +27,6 @@ public class ExtractionResult implements Serializable{
     }
 
     public ExtractionResult(final String recognizedCharacters) {
-
         this.recognizedCharacters = recognizedCharacters;
     }
 
@@ -33,27 +36,19 @@ public class ExtractionResult implements Serializable{
 
     @Override
     public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        final ExtractionResult that = (ExtractionResult) o;
-
-        return this.recognizedCharacters != null ? this.recognizedCharacters.equals(that.recognizedCharacters) : that.recognizedCharacters == null;
+        return EqualsBuilder.reflectionEquals(this, o);
     }
 
     @Override
     public int hashCode() {
-
-        return this.recognizedCharacters != null ? this.recognizedCharacters.hashCode() : 0;
+        return HashCodeBuilder.reflectionHashCode(this);
     }
 
 
     @Override
     public String toString() {
-        return "ExtractionResult : "+recognizedCharacters;
+        return ToStringBuilder.reflectionToString(this);
     }
+
 
 }

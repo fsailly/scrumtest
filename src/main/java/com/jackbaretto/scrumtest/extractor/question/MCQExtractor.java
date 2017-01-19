@@ -1,9 +1,13 @@
-package com.jackbaretto.scrumtest.extractor;
+package com.jackbaretto.scrumtest.extractor.question;
 
+import com.jackbaretto.scrumtest.extractor.choice.MCQChoiceExtractor;
+import com.jackbaretto.scrumtest.extractor.type.QuestionTypeExtractor;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.util.LoadLibs;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -20,26 +24,32 @@ import java.util.logging.Logger;
 public class MCQExtractor {
 
     private final ITesseract ocr = createOcr();
+    @Autowired
+    private MCQQuestionExtractor mcqQuestionExtractor;
+    @Autowired
+    private MCQChoiceExtractor mcqChoiceExtractor;
+    @Autowired
+    private QuestionTypeExtractor questionTypeExtractor;
 
-    public List<ExtractionResult> extractMCQ(final ExtractionParameters extractionParameters) {
-        final List<ExtractionResult> extractionResults = new ArrayList<>();
+
+    public List<ExtractedQuestionImpl> extractMCQ(final ExtractionParameters extractionParameters) {
+        final List<ExtractedQuestionImpl> extractionResults = new ArrayList();
         for (final File mcqPicture : extractionParameters.getMcqPictures()) {
-            final ExtractionResult recognizedMcq = this.recognizeCharacters(mcqPicture);
-            extractionResults.add(recognizedMcq);
+            final String recognizedMcq = this.recognizeCharacters(mcqPicture);
+            ExtractedQuestionImpl question = mcqQuestionExtractor.extract(recognizedMcq);
+            question.addChoices(mcqChoiceExtractor.extract(recognizedMcq));
+            extractionResults.add(question);
         }
         return extractionResults;
     }
 
-    private ExtractionResult recognizeCharacters(final File mcqPicture) {
+    private String recognizeCharacters(final File mcqPicture) {
         try {
-            // TODO : faire un test sur la reconnaissance de N caractères ??
-            final String recognizeCharacters = this.ocr.doOCR(mcqPicture);
-            Logger.getLogger(MCQExtractor.class.getName()).info(recognizeCharacters);
-            return new ExtractionResult(recognizeCharacters);
+            return  this.ocr.doOCR(mcqPicture);
         } catch (final TesseractException e) {
             Logger.getLogger(MCQExtractor.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
-        return ExtractionResult.EMPTY;
+        return StringUtils.EMPTY;
     }
 
     /**

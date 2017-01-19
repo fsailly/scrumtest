@@ -1,5 +1,6 @@
 package com.jackbaretto.scrumtest.extractor;
 
+import com.jackbaretto.scrumtest.extractor.question.ExtractionParameters;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class ExtractionParametersTest {
 
 
         Set<File> pictures = extractionParameters.getMcqPictures();
-        Assert.assertEquals(4, pictures.size());
+        Assert.assertEquals(7, pictures.size());
         for (File eachPicture : pictures) {
             Assert.assertTrue(eachPicture.getName().endsWith(".png"));
         }
