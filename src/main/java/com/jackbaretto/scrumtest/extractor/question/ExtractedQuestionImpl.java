@@ -14,11 +14,12 @@ import java.util.List;
  * Created by mehdi on 11/01/17.
  */
 @Entity
+@Table(name = "QUESTION")
 public class ExtractedQuestionImpl {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @Column(unique = true)
     private String label;
     private QuestionType type;
     @OneToMany(cascade = CascadeType.ALL, targetEntity = ExtractedChoiceImpl.class)

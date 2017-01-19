@@ -4,15 +4,13 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by mehdi on 12/01/17.
  */
 @Entity
+@Table(name = "Choice")
 public class ExtractedChoiceImpl {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
