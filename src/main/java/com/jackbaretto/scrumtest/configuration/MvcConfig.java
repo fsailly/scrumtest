@@ -25,6 +25,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addRedirectViewController("/" ,"/index.html");
     }
 
+
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);

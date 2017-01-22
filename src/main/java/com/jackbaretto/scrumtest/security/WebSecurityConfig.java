@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         try {
             http
                     .authorizeRequests().antMatchers("/mcq/").permitAll()
-                    .antMatchers("/resources/**").permitAll()
+                    .antMatchers("/home","/").permitAll().anyRequest().authenticated()
                     .and()
                     .formLogin()
                     .loginPage("/login")
