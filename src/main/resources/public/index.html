@@ -2,12 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>HTML5 : Hello Baretto</title>
+    <title>MCQ extractor</title>
+    <link rel="stylesheet" href="style/baretto.css">
 </head>
 <body>
-<h1>Hello Baretto</h1>
-<p>
-    This is scrumtest admin page!
-</p>
+
+<div class="extractor" id="mcq">
+    <h1>Admin view</h1>
+    <ul class="questions">
+        <li class="question" v-for="(question,index) in questions" @click="question.isValid = !question.isValid" transition="fade">
+            <button class="question_delete" @click.stop="removeQuestion(index)">
+                &times; </button>{{ question.label }}
+        </li>
+    </ul>
+    <button class="question_loader" @click="loadAllQuestions()">Load all questions</button>
+</div>
+
+<script src="bower_components/vue/dist/vue.js"></script>
+<script src="bower_components/vue-resource/dist/vue-resource.js"></script>
+<script src="app/mcq.app.js"></script>
 </body>
 </html>
