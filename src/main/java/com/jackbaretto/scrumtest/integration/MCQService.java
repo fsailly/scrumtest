@@ -1,6 +1,7 @@
 package com.jackbaretto.scrumtest.integration;
 
 import com.baretto.mcq.datamodel.Question;
+import com.jackbaretto.scrumtest.extractor.question.QuestionDTO;
 
 import java.io.IOException;
 import java.util.Set;
@@ -12,6 +13,13 @@ import java.util.Set;
 public interface MCQService {
 
     Set<Question> findAll();
+
+    /**
+     * Retrieve all unvalidate question.
+     * @return Set of {@link QuestionDTO}
+     */
+    Set<QuestionDTO> findUnvalidate();
+
 
     /**
      * Extract all MCQ from "samples" directory.

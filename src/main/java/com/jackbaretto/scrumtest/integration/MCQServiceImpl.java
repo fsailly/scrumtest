@@ -28,7 +28,13 @@ public class MCQServiceImpl implements MCQService {
     @Override
     public Set<Question> findAll(){
         Iterable<ExtractedQuestionImpl> extractedQuestions = mcqRepository.findAll();
-        return QuestionMapper.map(extractedQuestions);
+        return QuestionMapper.mapExtractedQuestionIntoQuestion(extractedQuestions);
+    }
+
+    @Override
+    public Set<QuestionDTO> findUnvalidate() {
+        Set<ExtractedQuestionImpl> unvalidateQuestions = mcqRepository.findByValidFalse();
+        return  QuestionMapper.mapExtractedQuestionIntoQuestionDTO(unvalidateQuestions);
     }
 
     @Override

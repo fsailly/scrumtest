@@ -18,9 +18,9 @@ import java.util.*;
 public class QuestionMapperTest {
 
     @Test
-    public void testQuestionMapping() {
+    public void testMapExtractedQuestionIntoQuestion() {
         ExtractedQuestionImpl extractedQuestion = createExtractedQuestion();
-        Set<Question> mappedQuestions = QuestionMapper.map(Arrays.asList(extractedQuestion));
+        Set<Question> mappedQuestions = QuestionMapper.mapExtractedQuestionIntoQuestion(Arrays.asList(extractedQuestion));
 
         Question expectedQuestion = createQuestion();
 
@@ -28,6 +28,39 @@ public class QuestionMapperTest {
         Question mappedQuestion = mappedQuestions.iterator().next();
         Assert.assertEquals(expectedQuestion, mappedQuestion);
 
+    }
+
+    @Test
+    public void testMapExtractedQuestionIntoQuestionDTO() {
+        ExtractedQuestionImpl extractedQuestion = createExtractedQuestion();
+        Set<ExtractedQuestionImpl> unvalidateQuestions = new HashSet();
+        unvalidateQuestions.add(extractedQuestion);
+        Set<QuestionDTO> mappedQuestions = QuestionMapper.mapExtractedQuestionIntoQuestionDTO(unvalidateQuestions);
+
+        QuestionDTO expectedQuestionDTO = createQuestionDTO();
+
+        Assert.assertEquals(1, mappedQuestions.size());
+        QuestionDTO mappedQuestion = mappedQuestions.iterator().next();
+        Assert.assertEquals(expectedQuestionDTO, mappedQuestion);
+
+    }
+
+    private QuestionDTO createQuestionDTO() {
+        final ChoiceDTO choiceA = new ChoiceDTO("Without exception.", false);
+        final ChoiceDTO choiceB = new ChoiceDTO("Whenever the product is free of defects.", false);
+        final ChoiceDTO choiceC = new ChoiceDTO("To make sure the Deve|opment Team is done every Sprint.", false);
+        final ChoiceDTO choiceD = new ChoiceDTO("When it makes sense.", true);
+
+
+        final Set<ChoiceDTO> choices = new HashSet();
+        choices.add(choiceA);
+        choices.add(choiceB);
+        choices.add(choiceC);
+        choices.add(choiceD);
+
+
+        String questionLabel = "The Product Owner must reIease each Increment to production.";
+        return new QuestionDTO(questionLabel, choices, AnswerConstraint.ONE_RESPONSE);
     }
 
     private ExtractedQuestionImpl createExtractedQuestion() {

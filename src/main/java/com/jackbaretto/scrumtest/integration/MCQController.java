@@ -3,13 +3,10 @@ package com.jackbaretto.scrumtest.integration;
 import com.baretto.mcq.datamodel.Question;
 import com.jackbaretto.scrumtest.extractor.question.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,5 +28,10 @@ public class MCQController {
     @RequestMapping(value = "/findAll")
     public Set<Question> findAll() {
         return  mcqService.findAll();
+    }
+
+    @RequestMapping(value="/findUnvalidate")
+    public Set<QuestionDTO> findUnvalidateQuestions() {
+        return  mcqService.findUnvalidate();
     }
 }

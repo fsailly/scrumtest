@@ -10,12 +10,20 @@
 <div class="extractor" id="mcq">
     <h1>Admin view</h1>
     <ul class="questions">
-        <li class="question" v-for="(question,index) in questions" @click="question.isValid = !question.isValid" transition="fade">
+        <li class="question" v-for="(question,index) in questions" @click="question.isValid = !question.isValid">
             <button class="question_delete" @click.stop="removeQuestion(index)">
-                &times; </button>{{ question.label }}
+                &times;</button>
+            {{ question.label }}
+        <ul class="choices">
+            <li class="choice" v-for="choice in question.choices ">
+                {{ choice.label }}
+            </li>
+        </ul>
+
         </li>
     </ul>
-    <button class="question_loader" @click="loadAllQuestions()">Load all questions</button>
+    <button class="question_loader" @click="loadAllUnvalidateQuestions()">Load all unvalidate questions</button>
+    <button class="question_loader" @click="extractAllQuestions()">Extract all questions</button>
 </div>
 
 <script src="bower_components/vue/dist/vue.js"></script>

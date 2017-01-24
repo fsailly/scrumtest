@@ -14,6 +14,8 @@ import java.util.*;
  * In charge of transform {@link ExtractedQuestionImpl} into {@link Question}.
  * <p>
  * Created by mehdi on 18/01/17.
+ *
+ * @TODO Mehdi 24/01:2017 : This 2 mapping are similars !!!
  */
 public class QuestionMapper {
 
@@ -26,7 +28,19 @@ public class QuestionMapper {
     }
 
 
-    private static Question map(ExtractedQuestionImpl extractedQuestion) {
+    /**
+     * Map an {@link ExtractedQuestionImpl} into {@link Question}.
+     * @param extractedQuestions
+     * @return a set of question
+     */
+    public static Set<Question> mapExtractedQuestionIntoQuestion(Iterable<ExtractedQuestionImpl> extractedQuestions){
+        final Set<Question> questions = new HashSet();
+        for (ExtractedQuestionImpl extractedQuestion:extractedQuestions) {
+            questions.add(mapExtractedQuestionIntoQuestion(extractedQuestion));
+        }
+        return questions;
+    }
+    private static Question mapExtractedQuestionIntoQuestion(ExtractedQuestionImpl extractedQuestion) {
         final Set<Choice> choices = new HashSet();
         final Set<Choice> correctChoices = new HashSet();
         for (ExtractedChoiceImpl extractedChoice : extractedQuestion.getChoices()) {
@@ -40,16 +54,31 @@ public class QuestionMapper {
         AnswerConstraint answerConstraint = QUESTION_TYPE_CONVERTER.get(extractedQuestion.getType());
         return new QuestionImpl(extractedQuestion.getLabel(), choices, correctChoices, answerConstraint);
     }
+
+
+
     /**
-     * Map an extractedQuestion into {@link Question}.
-     * @param extractedQuestions
-     * @return a set of question
+     * Map an {@link ExtractedQuestionImpl} into {@link QuestionDTO}.
+     * @param unvalidateQuestions
+     * @return a set of question {@link QuestionDTO}
      */
-    public static Set<Question> map(Iterable<ExtractedQuestionImpl> extractedQuestions){
-        final Set<Question> questions = new HashSet();
-        for (ExtractedQuestionImpl extractedQuestion:extractedQuestions) {
-            questions.add(map(extractedQuestion));
+    public static Set<QuestionDTO> mapExtractedQuestionIntoQuestionDTO(Set<ExtractedQuestionImpl> unvalidateQuestions) {
+        final Set<QuestionDTO> questions = new HashSet();
+        for (ExtractedQuestionImpl unvalidateExtractedQuestion:unvalidateQuestions) {
+            questions.add(mapExtractedQuestionIntoQuestionDTO(unvalidateExtractedQuestion));
         }
         return questions;
+    }
+
+    private static QuestionDTO mapExtractedQuestionIntoQuestionDTO(ExtractedQuestionImpl unvalidateQuestion) {
+        final Set<ChoiceDTO> choices = new HashSet();
+        for (ExtractedChoiceImpl extractedChoice : unvalidateQuestion.getChoices()) {
+            boolean isCorrectChoice = extractedChoice.isSelected();
+            final ChoiceDTO choice = new ChoiceDTO(extractedChoice.getLabel(), isCorrectChoice);
+            choices.add(choice);
+
+        }
+        AnswerConstraint answerConstraint = QUESTION_TYPE_CONVERTER.get(unvalidateQuestion.getType());
+        return new QuestionDTO(unvalidateQuestion.getLabel(), choices, answerConstraint);
     }
 }

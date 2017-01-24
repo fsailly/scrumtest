@@ -2,8 +2,7 @@
 var mcq_app = new Vue({
     el: '#mcq',
     data:{
-        message: 'Hello world!!!',
-    questions: []
+        questions: [{label:'test', isValid:false, choices: [{label:'choice'}]}]
     },
      methods: {
 
@@ -11,15 +10,29 @@ var mcq_app = new Vue({
           this.questions.splice(index, 1)
         },
 
-        loadAllQuestions(){
+      /*
+       * Load all unvalidate questions.
+       */
+        loadAllUnvalidateQuestions(){
 
-        this.$http.get('mcq/findAll').then(function (response){
+        this.$http.get('mcq/findUnvalidate').then(function (response){
                 this.questions = this.questions.concat(response.body);
         }).catch(function(error) {
             console.log(error);
         });
 
 
+        },
+
+        /*
+         * Call service in order to extract all MCQ shared by server.
+         */
+        extractAllQuestions(){
+         this.$http.get('mcq/extractAll').then(function (response){
+                       console.log('extract succeeded')
+                }).catch(function(error) {
+                    console.log(error);
+                });
         }
       }
 });

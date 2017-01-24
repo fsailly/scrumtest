@@ -22,6 +22,8 @@ public class ExtractedQuestionImpl {
     @Column(unique = true)
     private String label;
     private QuestionType type;
+    /** Check if a question is valid. A valid question doesn't contain special character (ie : '|','[') in words.*/
+    private boolean valid = false;
     @OneToMany(cascade = CascadeType.ALL, targetEntity = ExtractedChoiceImpl.class)
     private List<ExtractedChoiceImpl> choices = new ArrayList();
 
