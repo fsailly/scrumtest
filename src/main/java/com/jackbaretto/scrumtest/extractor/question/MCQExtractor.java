@@ -7,6 +7,7 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.util.LoadLibs;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,13 +17,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
- * In charge of MCQ extraction from image files
+ * n charge of MCQ extraction from image files
  * Created by florentsailly on 13/12/2016.
  */
 @Component
 public class MCQExtractor {
-
+private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(MCQExtractor.class);
     private final ITesseract ocr = createOcr();
     @Autowired
     private MCQQuestionExtractor mcqQuestionExtractor;
@@ -34,12 +36,21 @@ public class MCQExtractor {
 
     public List<ExtractedQuestionImpl> extractMCQ(final ExtractionParameters extractionParameters) {
         final List<ExtractedQuestionImpl> extractionResults = new ArrayList();
+        int i=0;
         for (final File mcqPicture : extractionParameters.getMcqPictures()) {
             final String recognizedMcq = this.recognizeCharacters(mcqPicture);
-            ExtractedQuestionImpl question = mcqQuestionExtractor.extract(recognizedMcq);
-            question.addChoices(mcqChoiceExtractor.extract(recognizedMcq));
-            extractionResults.add(question);
+            LOGGER.info("Extraction du fichier :  " + mcqPicture.getName());
+            try{
+                ExtractedQuestionImpl question = mcqQuestionExtractor.extract(recognizedMcq);
+                question.addChoices(mcqChoiceExtractor.extract(recognizedMcq));
+                extractionResults.add(question);
+            }catch (Exception exception){
+                LOGGER.error(exception.getMessage());
+            }
+            LOGGER.info("Image extraction finished");
         }
+        i=i+1;
+        LOGGER.info(">>>MCQ extraction done.");
         return extractionResults;
     }
 

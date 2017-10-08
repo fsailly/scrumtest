@@ -1,7 +1,7 @@
 {
   "version": "0.1-SNAPSHOT",
   "name": "scrumtest",
-  "appPath": "src/main/resources/webapp/",
+  "appPath": "src/main/resources/static/bower_components",
   "dependencies": {
     "vue": "2.1.10",
     "vue-resource": "1.0.3"

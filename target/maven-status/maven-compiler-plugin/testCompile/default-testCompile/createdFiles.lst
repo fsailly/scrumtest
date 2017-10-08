@@ -1,0 +1,9 @@
+com/jackbaretto/scrumtest/extractor/question/QuestionExtractorTest.class
+com/jackbaretto/scrumtest/extractor/choice/ChoiceExtractorTest.class
+com/jackbaretto/scrumtest/security/UserDetailsServiceImplTest.class
+com/jackbaretto/scrumtest/extractor/OCRTest.class
+com/jackbaretto/scrumtest/extractor/type/QuestionTypeExtractorTest.class
+com/jackbaretto/scrumtest/extractor/OSUtils.class
+com/jackbaretto/scrumtest/extractor/question/QuestionMapperTest.class
+com/jackbaretto/scrumtest/extractor/ExtractionParametersTest.class
+com/jackbaretto/scrumtest/extractor/question/ExtractedSampleQuestions.class

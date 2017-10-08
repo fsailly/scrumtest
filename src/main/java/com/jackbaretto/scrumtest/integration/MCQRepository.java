@@ -18,4 +18,5 @@ public interface MCQRepository extends CrudRepository<ExtractedQuestionImpl,Long
      */
     Set<ExtractedQuestionImpl> findByValidFalse();
 
+    Set<ExtractedQuestionImpl> findByValidTrue();
 }

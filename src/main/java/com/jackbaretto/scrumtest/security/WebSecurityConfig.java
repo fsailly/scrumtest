@@ -39,13 +39,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws ConfigurationException {
         try {
             http
-                    .authorizeRequests().antMatchers().permitAll().anyRequest().authenticated()
+                    .authorizeRequests().antMatchers().permitAll().anyRequest().permitAll()
                     .and()
                     .formLogin()
                     .permitAll()
                     .and()
                     .logout()
-                    .permitAll();
+                    .permitAll().and().csrf().disable();// TODO: reactivate it.
         } catch (Exception e) {
            logger.error("An exception occured during HttpSecurity configuration",e);
            throw new ConfigurationException(e.getMessage());

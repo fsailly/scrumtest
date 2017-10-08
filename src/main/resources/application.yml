@@ -1,8 +1,22 @@
-# Application configuration. You can add profile, change server configuration, database configuration ...
-# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
-
-
-# EMBEDDED SERVER CONFIGURATION
+spring:
+    application:
+        name: events
+    profiles:
+        # The commented value for `active` can be replaced with valid Spring profiles to load.
+        # Otherwise, it will be filled in by maven when building the WAR file
+        # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+        # active: dev
+    datasource:
+        url: jdbc:h2:~/workspaces/data/events;DB_CLOSE_DELAY=-1
+        name:
+        username: event
+        password:
+    jpa:
+        hibernate:
+                  ddl-auto: update
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        show-sql: true
 server:
-     port: 8080
+    port: 8080
 

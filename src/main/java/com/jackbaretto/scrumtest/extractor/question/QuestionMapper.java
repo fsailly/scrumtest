@@ -3,8 +3,6 @@ package com.jackbaretto.scrumtest.extractor.question;
 import com.baretto.mcq.datamodel.AnswerConstraint;
 import com.baretto.mcq.datamodel.Choice;
 import com.baretto.mcq.datamodel.Question;
-import com.baretto.mcq.datamodel.internals.ChoiceImpl;
-import com.baretto.mcq.datamodel.internals.QuestionImpl;
 import com.jackbaretto.scrumtest.extractor.choice.ExtractedChoiceImpl;
 import com.jackbaretto.scrumtest.extractor.type.QuestionType;
 
@@ -41,18 +39,19 @@ public class QuestionMapper {
         return questions;
     }
     private static Question mapExtractedQuestionIntoQuestion(ExtractedQuestionImpl extractedQuestion) {
-        final Set<Choice> choices = new HashSet();
-        final Set<Choice> correctChoices = new HashSet();
+        final List<Choice> choices = new ArrayList<>();
+        final List<Choice> correctChoices = new ArrayList<>();
         for (ExtractedChoiceImpl extractedChoice : extractedQuestion.getChoices()) {
             boolean isCorrectChoice = extractedChoice.isSelected();
-            final ChoiceImpl choice = new ChoiceImpl(extractedChoice.getLabel(), isCorrectChoice);
+            final Choice choice = new Choice(extractedChoice.getLabel());
+            choice.setSelected(isCorrectChoice);
             choices.add(choice);
             if(isCorrectChoice){
                 correctChoices.add(choice);
             }
         }
         AnswerConstraint answerConstraint = QUESTION_TYPE_CONVERTER.get(extractedQuestion.getType());
-        return new QuestionImpl(extractedQuestion.getLabel(), choices, correctChoices, answerConstraint);
+        return new Question(extractedQuestion.getLabel(), choices, correctChoices, answerConstraint);
     }
 
 

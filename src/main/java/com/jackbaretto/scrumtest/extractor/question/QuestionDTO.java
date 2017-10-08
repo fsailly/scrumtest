@@ -1,7 +1,6 @@
 package com.jackbaretto.scrumtest.extractor.question;
 
 import com.baretto.mcq.datamodel.AnswerConstraint;
-import com.jackbaretto.scrumtest.extractor.question.ChoiceDTO;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 

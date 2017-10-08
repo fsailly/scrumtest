@@ -25,7 +25,7 @@ public class MCQChoiceExtractor {
     private static final int CHOICES_START_INDEX = 0;
     private static final int SELECTED_CHOICE_BEGIN_INDEX = 2;
     private static final int NO_SELECTION_FOUND = 1;
-    private static final String FIND_SELECTION_PATTERN = "^\\s[\\.0I']\\s";
+    private static final String FIND_SELECTION_PATTERN = "^\\s[\\.o0IT4']\\s";
     public static final String SUBMIT_BUTTON = "Submit <";
 
     /**

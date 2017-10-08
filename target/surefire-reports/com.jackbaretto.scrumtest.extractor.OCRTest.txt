@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.jackbaretto.scrumtest.extractor.OCRTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.471 sec <<< FAILURE! - in com.jackbaretto.scrumtest.extractor.OCRTest
+recognitionCountTest(com.jackbaretto.scrumtest.extractor.OCRTest)  Time elapsed: 0.011 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at com.jackbaretto.scrumtest.extractor.OCRTest.getSampleMCQUrl(OCRTest.java:43)
+	at com.jackbaretto.scrumtest.extractor.OCRTest.recognitionCountTest(OCRTest.java:31)
+

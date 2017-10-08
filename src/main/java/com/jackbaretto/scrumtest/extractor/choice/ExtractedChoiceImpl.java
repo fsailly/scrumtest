@@ -15,7 +15,7 @@ public class ExtractedChoiceImpl {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @Column(length = 5000)
     private String label;
 
     private boolean selected;
@@ -37,13 +37,18 @@ public class ExtractedChoiceImpl {
     }
 
     @Override
-    public boolean equals(final Object o) {
-        return EqualsBuilder.reflectionEquals(this,o);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExtractedChoiceImpl that = (ExtractedChoiceImpl) o;
+
+        return id != null ? id.equals(that.id) : that.id == null;
     }
 
     @Override
     public int hashCode() {
-       return  HashCodeBuilder.reflectionHashCode(this);
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
